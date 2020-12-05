@@ -2,3 +2,4 @@
 target
 session.txt
 *.iml
+.DS_Store
