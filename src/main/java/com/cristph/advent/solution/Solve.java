@@ -10,7 +10,7 @@ public interface Solve {
      * solve the problem
      *
      * @param args
-     * @return result in Stirng
+     * @return puzzle2Result in Stirng
      */
     String solve(String[] args);
 }
