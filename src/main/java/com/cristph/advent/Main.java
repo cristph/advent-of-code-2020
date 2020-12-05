@@ -1,9 +1,10 @@
 package com.cristph.advent;
 
-import java.lang.reflect.Method;
-
 import com.cristph.advent.utils.DataManager;
 import lombok.extern.slf4j.Slf4j;
+
+import java.lang.reflect.Method;
+import java.time.LocalDate;
 
 /**
  * @author cristph
@@ -19,10 +20,13 @@ public class Main {
 
     private static final String LINE_SEPARATOR = System.getProperty("line.separator");
 
+    private static final LocalDate beginDate = LocalDate.of(2020, 12, 1);
+
     public static void main(String[] args) {
         // getDataFromServer();
         int i = 1;
-        while (i <= 2) {
+        int days = (int) (LocalDate.now().toEpochDay() - beginDate.toEpochDay());
+        while (i <= days) {
             String klassName = BASE_CLASS_PREFIX + (i < 10 ? "0" + i : i);
             try {
                 Class klass = Class.forName(String.format(BASE_CLASS_NAME, klassName));
@@ -39,7 +43,7 @@ public class Main {
         }
     }
 
-    public static void getDataFromServer(){
+    public static void getDataFromServer() {
 
         DataManager.writeAllDaysToFile(2020);
     }
