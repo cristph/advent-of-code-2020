@@ -6,6 +6,8 @@ import lombok.extern.slf4j.Slf4j;
 import java.lang.reflect.Method;
 import java.time.LocalDate;
 
+import static com.cristph.advent.constants.Constans.LINE_SEPARATOR;
+
 /**
  * @author cristph
  * @date 2020/12/4 8:30 下午
@@ -17,8 +19,6 @@ public class Main {
     private static final String BASE_CLASS_PREFIX = "Day";
     private static final String BASE_METHOD_NAME = "solve";
     private static final String BASE_RESOURCE_NAME = "src/main/resources/aoc_input/%s.txt";
-
-    private static final String LINE_SEPARATOR = System.getProperty("line.separator");
 
     private static final LocalDate beginDate = LocalDate.of(2020, 12, 1);
 
@@ -34,7 +34,7 @@ public class Main {
                 Object result = method.invoke(klass.newInstance(),
                         (Object) new String[]{String.format(BASE_RESOURCE_NAME, klassName)});
                 if (log.isInfoEnabled()) {
-                    log.info("day result:" + LINE_SEPARATOR + "{}" + LINE_SEPARATOR, result);
+                    log.info("day" + i + " result:" + LINE_SEPARATOR + "{}" + LINE_SEPARATOR, result);
                 }
             } catch (Exception e) {
                 log.error("invoke error.", e);
