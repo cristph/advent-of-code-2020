@@ -2,6 +2,7 @@ package com.cristph.advent;
 
 import java.lang.reflect.Method;
 
+import com.cristph.advent.utils.DataManager;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -14,11 +15,12 @@ public class Main {
     private static final String BASE_CLASS_NAME = "com.cristph.advent.solution.%s";
     private static final String BASE_CLASS_PREFIX = "Day";
     private static final String BASE_METHOD_NAME = "solve";
-    private static final String BASE_RESOURCE_NAME = "src/main/resources/%s.txt";
+    private static final String BASE_RESOURCE_NAME = "src/main/resources/aoc_input/%s.txt";
 
     private static final String LINE_SEPARATOR = System.getProperty("line.separator");
 
     public static void main(String[] args) {
+        // getDataFromServer();
         int i = 1;
         while (i <= 2) {
             String klassName = BASE_CLASS_PREFIX + (i < 10 ? "0" + i : i);
@@ -35,5 +37,10 @@ public class Main {
             }
             i++;
         }
+    }
+
+    public static void getDataFromServer(){
+
+        DataManager.writeAllDaysToFile(2020);
     }
 }

@@ -22,7 +22,6 @@ public class DataManager {
 
     private static String sessionCookie;
 
-
     public static void writeAllDaysToFile(int year) {
         loadSession();
         for (int i = 1; i <= 25; i++) {
@@ -89,6 +88,9 @@ public class DataManager {
             Files.write(path, lines.trim().getBytes());
         } catch (IOException e) {
             e.printStackTrace();
+        }
+        if (log.isInfoEnabled()) {
+            log.info("finish load data to file : {}", path.toString());
         }
     }
 
