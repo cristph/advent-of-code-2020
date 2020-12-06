@@ -10,19 +10,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Day05 implements Solve {
+public class Day05 extends AbstractDaySolve {
 
     @Override
-    public String solve(String[] args) {
-        PuzzleResult puzzleResult = PuzzleResultBuilder.newBuilder()
-                .append("puzzle1", solvePuzzle1(args))
-                .append("puzzle2", solvePuzzle2(args))
-                .build();
-        return puzzleResult.toString();
-    }
-
-
-    public String solvePuzzle1(String[] args) {
+    protected String solvePuzzle1(String[] args) {
         String fileName = args[0];
         try (BufferedReader br = Files.newBufferedReader(Paths.get(fileName))) {
             return String.valueOf(br.lines().map(this::getSeat).map(p -> p.getLeft() * 8 + p.getRight()).max(Integer::compareTo).get());
@@ -32,7 +23,8 @@ public class Day05 implements Solve {
         return null;
     }
 
-    public String solvePuzzle2(String[] args) {
+    @Override
+    protected String solvePuzzle2(String[] args) {
         String fileName = args[0];
         try (BufferedReader br = Files.newBufferedReader(Paths.get(fileName))) {
             List<Integer> list = br.lines().map(this::getSeat).map(p -> p.getLeft() * 8 + p.getRight()).sorted().collect(Collectors.toList());
@@ -42,7 +34,10 @@ public class Day05 implements Solve {
                     result.add(list.get(i) + 1);
                 }
             }
-            return String.valueOf(result);
+            if (result.size() != 1) {
+                throw new RuntimeException("result size illegal");
+            }
+            return String.valueOf(result.get(0));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -80,9 +75,4 @@ public class Day05 implements Solve {
         }
     }
 
-    public static void main(String[] args) {
-        Day05 day05 = new Day05();
-        String str = "BBFFBBFRLL";
-        System.out.println(new Pair<>(day05.getSeatSeries(str.substring(0, 7)), day05.getSeatSeries(str.substring(7, 10))));
-    }
 }

@@ -22,9 +22,9 @@ public class DataManager {
 
     private static String sessionCookie;
 
-    public static void writeAllDaysToFile(int year) {
+    public static void writeAllDaysToFile(int year, int days) {
         loadSession();
-        for (int i = 1; i <= 25; i++) {
+        for (int i = 1; i <= days; i++) {
             String filename = "Day" + pad(i) + ".txt";
             Path path = getBasePath(filename);
             getDataFromServer(i, year, path);

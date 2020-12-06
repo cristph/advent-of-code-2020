@@ -11,18 +11,10 @@ import java.util.stream.Collectors;
  * @author cristph
  * @date 2020/12/4 8:28 下午
  */
-public class Day01 implements Solve {
+public class Day01 extends AbstractDaySolve {
 
     @Override
-    public String solve(String[] args) {
-        PuzzleResult puzzleResult = PuzzleResultBuilder.newBuilder()
-                .append("puzzle1", solvePuzzle1(args))
-                .append("puzzle2", solvePuzzle2(args))
-                .build();
-        return puzzleResult.toString();
-    }
-
-    private String solvePuzzle1(String[] args) {
+    protected String solvePuzzle1(String[] args) {
         String fileName = args[0];
         Set<Long> set = new HashSet<>();
 
@@ -53,7 +45,8 @@ public class Day01 implements Solve {
      * @param args
      * @return
      */
-    private String solvePuzzle2(String[] args) {
+    @Override
+    protected String solvePuzzle2(String[] args) {
         String fileName = args[0];
         List<Long> list = null;
         try (BufferedReader br = Files.newBufferedReader(Paths.get(fileName))) {

@@ -10,16 +10,16 @@ import java.util.function.Function;
  * @author cristph
  * @date 2020/12/4 10:05 下午
  */
-public class Day02 implements Solve {
-
+public class Day02 extends AbstractDaySolve {
 
     @Override
-    public String solve(String[] args) {
-        PuzzleResult puzzleResult = PuzzleResultBuilder.newBuilder()
-                .append("puzzle1", solvePuzzle(args, this::checkPassword))
-                .append("puzzle2", solvePuzzle(args, this::checkPassword2))
-                .build();
-        return puzzleResult.toString();
+    protected String solvePuzzle1(String[] args) {
+        return solvePuzzle(args, this::checkPassword);
+    }
+
+    @Override
+    protected String solvePuzzle2(String[] args) {
+        return solvePuzzle(args, this::checkPassword2);
     }
 
     private String solvePuzzle(String[] args, Function<String, Integer> f) {

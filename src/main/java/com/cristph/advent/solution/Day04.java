@@ -9,16 +9,8 @@ import java.util.stream.Collectors;
 
 import static com.cristph.advent.constants.Constans.LINE_SEPARATOR;
 
-public class Day04 implements Solve {
+public class Day04 extends AbstractDaySolve {
 
-    @Override
-    public String solve(String[] args) {
-        PuzzleResult puzzleResult = PuzzleResultBuilder.newBuilder()
-                .append("puzzle1", solvePuzzle1(args))
-                .append("puzzle2", solvePuzzle2(args))
-                .build();
-        return puzzleResult.toString();
-    }
 
     private static final HashSet<String> necessaryKeySet = new HashSet<>();
 
@@ -33,7 +25,8 @@ public class Day04 implements Solve {
         necessaryKeySet.add("cid");
     }
 
-    public String solvePuzzle1(String[] args) {
+    @Override
+    protected String solvePuzzle1(String[] args) {
         String fileName = args[0];
         int count = 0;
         try (BufferedReader br = Files.newBufferedReader(Paths.get(fileName))) {
@@ -61,7 +54,8 @@ public class Day04 implements Solve {
         return String.valueOf(count);
     }
 
-    public String solvePuzzle2(String[] args) {
+    @Override
+    protected String solvePuzzle2(String[] args) {
         String fileName = args[0];
         int count = 0;
         try (BufferedReader br = Files.newBufferedReader(Paths.get(fileName))) {

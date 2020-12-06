@@ -6,18 +6,10 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Arrays;
 
-public class Day03 implements Solve {
+public class Day03 extends AbstractDaySolve {
 
     @Override
-    public String solve(String[] args) {
-        PuzzleResult puzzleResult = PuzzleResultBuilder.newBuilder()
-                .append("puzzle1", solvePuzzle1(args))
-                .append("puzzle2", solvePuzzle2(args))
-                .build();
-        return puzzleResult.toString();
-    }
-
-    public String solvePuzzle1(String[] args) {
+    protected String solvePuzzle1(String[] args) {
         String fileName = args[0];
         int j = 0;
         int count = 0;
@@ -36,7 +28,8 @@ public class Day03 implements Solve {
         return String.valueOf(count);
     }
 
-    public String solvePuzzle2(String[] args) {
+    @Override
+    protected String solvePuzzle2(String[] args) {
         String fileName = args[0];
         int[][] slopes = new int[][]{{1, 1}, {3, 1}, {5, 1}, {7, 1}, {1, 2}};
         int[][] post = new int[][]{{0, 0}, {0, 0}, {0, 0}, {0, 0}, {0, 0}};

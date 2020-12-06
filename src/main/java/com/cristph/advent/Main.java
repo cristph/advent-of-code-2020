@@ -23,9 +23,10 @@ public class Main {
     private static final LocalDate beginDate = LocalDate.of(2020, 12, 1);
 
     public static void main(String[] args) {
-        // getDataFromServer();
         int i = 1;
-        int days = (int) (LocalDate.now().toEpochDay() - beginDate.toEpochDay());
+        int days = (int) (LocalDate.now().toEpochDay() - beginDate.toEpochDay()) + 1;
+        days = days > 25 ? 25 : days;
+        // getDataFromServer(days);
         while (i <= days) {
             String klassName = BASE_CLASS_PREFIX + (i < 10 ? "0" + i : i);
             try {
@@ -43,8 +44,8 @@ public class Main {
         }
     }
 
-    public static void getDataFromServer() {
+    public static void getDataFromServer(int days) {
 
-        DataManager.writeAllDaysToFile(2020);
+        DataManager.writeAllDaysToFile(2020, days);
     }
 }
